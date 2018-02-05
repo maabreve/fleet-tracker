@@ -1,27 +1,45 @@
-# Carriers
+# Fleet Tracker
 
-#Instruções
+# Technology: Microsoft .Net, Geolocation Googleapis, Sql Server LocalDb
 
-1) Abrir o projeto pelo Visual Sutdio
+# Database Model:  Entity Framework Code First, Fluent Api, Repository, Unit Of Work
 
-2) Efetuar restore dos packages com Nuget
+# Entities:
 
-  2.1) Clicar com botão direito na solution e seleciona Restore Nuget Packages
-  
-3) Setup Banco de Dados
+- Driver: Store information about the drivers
+	Id (PK), Name
 
-  3.1) Alterar credenciais do banco de dados no arquivo web.config para apontar para SQL Server local
-  
-  3.2) Criação da estrutura do banco com Entity Framework Code-First
-    
-    3.2.1)  Abrir a ferramenta Package Manager Console
-    
-    3.2.2)  Altera Default Project para Carriers.Data
-    
-    3.2.3) Executar o comando Update-Database -Verbose
-    
-4) Executar o programa e criar um usuário através do link 'Register as a new user'
 
-5) Incluir, Editar, Pesquisar e Excluir Carriers
+- Vehicle: Store information about the vehicles 
 
-OBS: É permitido 1 cadastro de rating por usuário, portanto, para cadastrar mais de um rating para um mesmo carrier, é necessário o registro de mais de um usuário.
+	Id (PK), Name
+
+
+- Freight: Store information about the freight
+
+	Id, Description, Date, VehicleId (FK), DriverId (FK) 
+
+
+- TrackingCurrentPosition: Store current position of each freight
+
+	Id, FreightId (FK), Description, Lat, Lng 
+
+
+- TrackingCurrentLog: Store historical position of each freight
+
+	Id, FreightId (FK), Timestamp, Lat, Lng
+
+
+# Database Access:  .Net Web Api
+
+# Security: Asp.Net Identity / Json Web Token 
+
+# Front End: Asp.Net MVC, Google Maps, HTML Geolocation
+
+# Instructions:
+
+1- Extract the files in a new directory (if you prefer, clone it in the GitHub - git clone https://github.com/maabreve/fleet-tracker)
+2- Open the solution FleetTracker.sln in Visual Studio 
+3- Build and Run the solution (Ctrl + F5) (Confirm if the project FleeTracker.Web is the startup project)
+4- Register a new user
+5- Click on the map locations to see freight details
